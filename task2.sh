@@ -1,0 +1,1 @@
+grep -l "sample" * | xargs grep -o "CSC510" | uniq -c | grep -E '^ *3|[4-9][0-9]* ' | sort -r |  gawk '{print $2}' | gawk -F: '{print $1}' | sed 's/file_/filtered_/'
