@@ -1,1 +1,1 @@
-grep -l "sample" * | xargs grep -o "CSC510" | uniq -c | grep -E '^ *3|[4-9][0-9]* ' | sort -r |  gawk '{print $2}' | gawk -F: '{print $1}' | sed 's/file_/filtered_/'
+grep -l "sample" * | xargs grep -o "CSC510" | uniq -c | grep -E '^ *3|[4-9][0-9]* ' | gawk -F: '{print $1}' | gawk '{ "stat -c%s " $2 | getline size; print $2, size, $1 }' | sort -k3,3nr -k2,2nr | sed 's/file_/filtered_/' | gawk '{print $1}'
