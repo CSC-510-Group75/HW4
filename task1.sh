@@ -1,0 +1,1 @@
+ps | grep infinite.sh | gawk {'print $1'} | xargs kill
